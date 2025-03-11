@@ -5,7 +5,7 @@ import Bai from './Class/Bai';
 
 const Stack = createNativeStackNavigator();
 
-export default function App() {
+export default function AppClass() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
