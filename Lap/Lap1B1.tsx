@@ -1,6 +1,6 @@
 import React from "react";
-import { View, Text, Image, Pressable, StyleSheet } from "react-native";
-import { Header } from "react-native/Libraries/NewAppScreen";
+import { View, Text, Image, Pressable, StyleSheet, ActivityIndicator } from "react-native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 interface Lap1B1Props {
   title?: string;
@@ -12,7 +12,10 @@ interface Lap1B1Props {
   iconRight?: string;
   rightComponent?: React.ReactNode;
   rightIconSize?: number;
-  navigation?: any;
+  navigation?: NativeStackNavigationProp<any>;
+  backgroundColor?: string;
+  visible?: boolean;
+  loading?: boolean;
 }
 
 export default function Lap1B1({
@@ -26,7 +29,12 @@ export default function Lap1B1({
   rightComponent,
   rightIconSize = 24,
   navigation,
+  backgroundColor = "#fff",
+  visible = true,
+  loading = false,
 }: Lap1B1Props) {
+  if (!visible) return null;
+
   const renderLeft = () => {
     if (leftComponent) return leftComponent;
 
@@ -35,10 +43,7 @@ export default function Lap1B1({
     }
 
     return (
-      <Pressable
-        hitSlop={15}
-        onPress={() => navigation.goBack()}
-      >
+      <Pressable hitSlop={15} onPress={() => navigation?.goBack && navigation.goBack()}>
         <Image
           source={{ uri: iconLeft }}
           style={{
@@ -54,32 +59,43 @@ export default function Lap1B1({
 
   const renderCenter = () => (
     <View style={styles.containerCenter}>
-      <Text style={styles.title} numberOfLines={numberOfLines}>
-        {title}
-      </Text>
+      {loading ? (
+        <ActivityIndicator size="small" color="#000" />
+      ) : (
+        <Text style={styles.title} numberOfLines={numberOfLines}>
+          {title}
+        </Text>
+      )}
     </View>
   );
 
-  const renderRight = () => (
-    <View style={styles.containerRight}>
-      {rightComponent ||
-        (iconRight && (
+  const renderRight = () => {
+    if (rightComponent) {
+      return <View style={styles.containerRight}>{rightComponent}</View>;
+    }
+
+    if (iconRight) {
+      return (
+        <View style={styles.containerRight}>
           <Pressable hitSlop={15}>
             <Image
               source={{ uri: iconRight }}
               style={{ width: rightIconSize, height: rightIconSize, resizeMode: "contain" }}
             />
           </Pressable>
-        ))}
-    </View>
-  );
+        </View>
+      );
+    }
+
+    return <View style={styles.containerRight} />;
+  };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor }]}>
       {renderLeft()}
       {renderCenter()}
       {renderRight()}
-      {!rightComponent && !iconRight && (
+      {!rightComponent && !iconRight && require("../image/vxt.jpg") && (
         <Image
           source={require("../image/vxt.jpg")}
           style={{ width: 30, height: 30, borderRadius: 15 }}
@@ -96,7 +112,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingHorizontal: 15,
     paddingVertical: 10,
-    backgroundColor: "#fff",
     marginTop: 40,
   },
   containerCenter: {

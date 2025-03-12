@@ -1,116 +1,130 @@
 import React from "react";
-import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, Image, Pressable, StyleSheet, ActivityIndicator } from "react-native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
-type EventInfo = {
-  title: string;
-  data: {
-    location?: string;
-    time?: string;
-    transport?: string;
-    imageUrl?: string;
-    hotelName?: string;
-    address?: string;
-  }[];
-};
+interface Lap1B1Props {
+  title?: string;
+  numberOfLines?: number;
+  iconLeft?: string;
+  iconLeftColor?: string;
+  leftComponent?: React.ReactNode;
+  leftIconSize?: number;
+  iconRight?: string;
+  rightComponent?: React.ReactNode;
+  rightIconSize?: number;
+  navigation?: NativeStackNavigationProp<any>;
+  backgroundColor?: string;
+  visible?: boolean;
+  loading?: boolean;
+}
 
-const eventInfo: EventInfo[] = [
-  {
-    title: "Lịch trình",
-    data: [
-      {
-        location: "Hồ Tràm, Vũng Tàu",
-        time: "09:00 AM - 12:00 AM, 12/12/2024",
-        transport: "Xe bus",
-        imageUrl: "https://cdn.xanhsm.com/2025/03/0ca319dd-tuong-dai-chua-kito-2.jpg",
-      },
-    ],
-  },
-  {
-    title: "Khách sạn",
-    data: [
-      {
-        hotelName: "Hồng Quỳnh",
-        time: "06:00 AM - 12:00 AM",
-        address: "234 Quang Trung, Hồ Chí Minh",
-      },
-    ],
-  },
-];
+export default function Lap1B1({
+  title = "Header",
+  numberOfLines = 1,
+  iconLeft = "https://www.iconpacks.net/icons/2/free-arrow-left-icon-3099-thumb.png",
+  iconLeftColor = "black",
+  leftComponent,
+  leftIconSize = 24,
+  iconRight,
+  rightComponent,
+  rightIconSize = 24,
+  navigation,
+  backgroundColor = "#fff",
+  visible = true,
+  loading = false,
+}: Lap1B1Props) {
+  if (!visible) return null;
 
-const SectionView: React.FC<{ section: EventInfo }> = ({ section }) => {
-  return (
-    <View style={styles.sectionContainer}>
-      <Text style={styles.sectionTitle}>{section.title}</Text>
-      {section.data.map((item, index) => (
-        <View key={index} style={styles.card}>
-          {item.location && <Text style={styles.cardText}>Địa điểm: {item.location}</Text>}
-          {item.time && <Text style={styles.cardText}>Thời gian: {item.time}</Text>}
-          {item.transport && <Text style={styles.cardText}>Phương tiện di chuyển: {item.transport}</Text>}
-          {item.imageUrl && <Image source={{ uri: item.imageUrl }} style={styles.image} />}
-          {item.hotelName && <Text style={styles.cardText}>Tên khách sạn: {item.hotelName}</Text>}
-          {item.address && <Text style={styles.cardText}>Địa điểm: {item.address}</Text>}
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>CHI TIẾT</Text>
-          </TouchableOpacity>
-        </View>
-      ))}
+  const renderLeft = () => {
+    if (leftComponent) return leftComponent;
+
+    if (!iconLeft) {
+      return <View style={{ width: leftIconSize, height: leftIconSize }} />;
+    }
+
+    return (
+      <Pressable hitSlop={15} onPress={() => navigation?.goBack && navigation.goBack()}>
+        <Image
+          source={{ uri: iconLeft }}
+          style={{
+            tintColor: iconLeftColor,
+            width: leftIconSize,
+            height: leftIconSize,
+            resizeMode: "contain",
+          }}
+        />
+      </Pressable>
+    );
+  };
+
+  const renderCenter = () => (
+    <View style={styles.containerCenter}>
+      {loading ? (
+        <ActivityIndicator size="small" color="#000" />
+      ) : (
+        <Text style={styles.title} numberOfLines={numberOfLines}>
+          {title}
+        </Text>
+      )}
     </View>
   );
-};
 
-export default function Lap2B2() {
+  const renderRight = () => {
+    if (rightComponent) {
+      return <View style={styles.containerRight}>{rightComponent}</View>;
+    }
+
+    if (iconRight) {
+      return (
+        <View style={styles.containerRight}>
+          <Pressable hitSlop={15}>
+            <Image
+              source={{ uri: iconRight }}
+              style={{ width: rightIconSize, height: rightIconSize, resizeMode: "contain" }}
+            />
+          </Pressable>
+        </View>
+      );
+    }
+
+    return <View style={styles.containerRight} />;
+  };
+
   return (
-    <ScrollView contentContainerStyle={styles.scrollView}>
-      {eventInfo.map((section, index) => (
-        <SectionView key={index} section={section} />
-      ))}
-    </ScrollView>
+    <View style={[styles.container, { backgroundColor }]}>
+      {renderLeft()}
+      {renderCenter()}
+      {renderRight()}
+      {!rightComponent && !iconRight && require("../image/vxt.jpg") && (
+        <Image
+          source={require("../image/vxt.jpg")}
+          style={{ width: 30, height: 30, borderRadius: 15 }}
+        />
+      )}
+    </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginVertical: 10,
-    paddingHorizontal: 10,
-    marginTop: 40
-  },
-  sectionTitle: {
-    fontSize: 28,
-    fontWeight: "bold",
-    marginBottom: 5,
-  },
-  card: {
-    backgroundColor: "#fff",
-    padding: 15,
-    borderRadius: 10,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 5,
-    marginBottom: 10,
-  },
-  cardText: {
-    fontSize: 16,
-    marginBottom: 5,
-  },
-  image: {
-    width: "100%",
-    height: 150,
-    borderRadius: 10,
-    marginVertical: 10,
-  },
-  button: {
-    backgroundColor: "#007bff",
+  container: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: 15,
     paddingVertical: 10,
-    borderRadius: 5,
+    marginTop: 40,
+  },
+  containerCenter: {
+    flex: 1,
     alignItems: "center",
   },
-  buttonText: {
-    color: "#fff",
+  title: {
+    fontSize: 18,
     fontWeight: "bold",
+    color: "#000",
   },
-  scrollView: {
-    paddingVertical: 10,
+  containerRight: {
+    flexDirection: "row",
+    alignItems: "center",
   },
 });

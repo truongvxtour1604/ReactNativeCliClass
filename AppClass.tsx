@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Bai from './Class/Bai';
+import Bai from './class/Bai';
 
 const Stack = createNativeStackNavigator();
 
