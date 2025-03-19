@@ -18,12 +18,12 @@ export default function Bai1() {
         year: 2024,
     });
 
-    // useCallback để tránh tạo lại hàm handleIncrease không cần thiết
+    // useCallback để tránh tạo lại hàm handleIncrease không cần thiết mỗi khi cộng thêm
     const handleIncrease = useCallback(() => {
         setCount(prev => prev + 1);
     }, []);
 
-    // useCallback để tránh tạo lại hàm updateInforUser không cần thiết
+    // useCallback để tránh tạo lại hàm updateInforUser không cần thiết mỗi khi cập nhật
     const updateInforUser = useCallback(() => {
         setInforUser({
             name: "Vũ Xuân Trường",
@@ -36,6 +36,8 @@ export default function Bai1() {
         console.log(`Count đã thay đổi: ${count} lần`);
     }, [count]); // Chạy lại khi count thay đổi
 
+    // useMemo giúp lưu lại kết quả tính trước đó để tiện cho lần tính sau.
+    // VD: 2 + 2 = 4. Lần sau chỉ cần lấy 4 + 6 chứ không cần 2 + 2 + 6 như useState.
     const expensiveCalculation = useMemo(() => {
         console.log("Tính toán lại...");
         return count2 * 2;
