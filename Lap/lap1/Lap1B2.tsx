@@ -58,7 +58,7 @@ const SectionView: React.FC<{ section: EventInfo }> = ({ section }) => {
   );  
 };
 
-export default function Lap2B2() {
+export default function Lap1B2() {
   return (
     <FlatList
       data={eventInfo}

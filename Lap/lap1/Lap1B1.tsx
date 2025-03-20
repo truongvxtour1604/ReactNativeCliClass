@@ -95,9 +95,9 @@ export default function Lap1B1({
       {renderLeft()}
       {renderCenter()}
       {renderRight()}
-      {!rightComponent && !iconRight && require("../image/vxt.jpg") && (
+      {!rightComponent && !iconRight && require("../../image/vxt.jpg") && (
         <Image
-          source={require("../image/vxt.jpg")}
+          source={require("../../image/vxt.jpg")}
           style={{ width: 30, height: 30, borderRadius: 15 }}
         />
       )}

@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text } from "react-native";
-import Lap1B1 from "./lap/Lap1B1"; // Import header
-import Lap1B3 from "./lap/Lap1B3";
+import Lap1B1 from "./lap/lap1/Lap1B1"; // Import header
+import Lap1B3 from "./lap/lap1/Lap1B3";
 
 export default function Demo({ navigation }: { navigation: any }) {
     return (
