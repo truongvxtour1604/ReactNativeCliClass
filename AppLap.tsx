@@ -11,6 +11,10 @@ import Lap3 from './lap/lap3/Lap3';
 import Lap3B1 from './lap/lap3/Lap3B1';
 import Lap3B2 from './lap/lap3/Lap3B2';
 import Lap3B3 from './lap/lap3/Lap3B3';
+import Lap4 from './lap/lap4/Lap4';
+import Lap4B1 from './lap/lap4/Lap4B1';
+import Lap4B2 from './lap/lap4/Lap4B2';
+import Lap4B3 from './lap/lap4/Lap4B3';
 
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +32,10 @@ export default function AppLap() {
         <Stack.Screen name="Lap3B1" component={Lap3B1} options={{ headerShown: false }} />
         <Stack.Screen name="Lap3B2" component={Lap3B2} options={{ headerShown: false }} />
         <Stack.Screen name="Lap3B3" component={Lap3B3} options={{ headerShown: false }} />
+        <Stack.Screen name="Lap4" component={Lap4} options={{ headerShown: false }} />
+        <Stack.Screen name="Lap4B1" component={Lap4B1} options={{ headerShown: false }} />
+        <Stack.Screen name="Lap4B2" component={Lap4B2} options={{ headerShown: false }} />
+        <Stack.Screen name="Lap4B3" component={Lap4B3} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
