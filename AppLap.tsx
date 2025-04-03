@@ -15,6 +15,12 @@ import Lap4 from './lap/lap4/Lap4';
 import Lap4B1 from './lap/lap4/Lap4B1';
 import Lap4B2 from './lap/lap4/Lap4B2';
 import Lap4B3 from './lap/lap4/Lap4B3';
+import Lap5 from './lap/lap5/Lap5';
+import Lap5B1 from './lap/lap5/Lap5B1';
+import Lap6 from './lap/lap6/Lap6';
+import Lap6B1 from './lap/lap6/Lap6B1';
+import Lap6B2 from './lap/lap6/Lap6B2';
+import Lap6B3 from './lap/lap6/Lap6B3';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,7 +28,7 @@ export default function AppLap() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Lap" component={Lap} options={{ headerShown: false }} />
+        {/* <Stack.Screen name="Lap" component={Lap} options={{ headerShown: false }} />
         <Stack.Screen name="Lap1" component={Lap1} options={{ headerShown: false }} />
         <Stack.Screen name="Lap1B1" component={Lap1B1} options={{ headerShown: false }} />
         <Stack.Screen name="Lap1B2" component={Lap1B2} options={{ headerShown: false }} />
@@ -36,6 +42,12 @@ export default function AppLap() {
         <Stack.Screen name="Lap4B1" component={Lap4B1} options={{ headerShown: false }} />
         <Stack.Screen name="Lap4B2" component={Lap4B2} options={{ headerShown: false }} />
         <Stack.Screen name="Lap4B3" component={Lap4B3} options={{ headerShown: false }} />
+        <Stack.Screen name="Lap5" component={Lap5} options={{ headerShown: false }} />
+        <Stack.Screen name="Lap5B1" component={Lap5B1} options={{ headerShown: false }} /> */}
+        <Stack.Screen name="Lap6" component={Lap6} options={{ headerShown: false }} />
+        <Stack.Screen name="Lap6B1" component={Lap6B1} options={{ headerShown: false }} />
+        <Stack.Screen name="Lap6B2" component={Lap6B2} options={{ headerShown: false }} />
+        <Stack.Screen name="Lap6B3" component={Lap6B3} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

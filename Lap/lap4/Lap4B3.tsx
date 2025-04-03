@@ -1,9 +1,7 @@
-import React, { useEffect } from "react";
-import { StyleSheet, View, Button, Text } from "react-native";
-import TrackPlayer, { usePlaybackState, Capability, State } from "react-native-track-player";
+import React from "react";
+import { StyleSheet, View, Text } from "react-native";
 
 export default function Lap4B3() {
-
     return (
         <View style={styles.container}>
             <Text>Lap4B3</Text>

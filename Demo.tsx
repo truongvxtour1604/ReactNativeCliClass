@@ -1,31 +1,18 @@
 import React from "react";
-import { View, Text } from "react-native";
-import Lap1B1 from "./lap/lap1/Lap1B1"; // Import header
-import Lap1B3 from "./lap/lap1/Lap1B3";
+import { View } from "react-native";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import Lap5B1 from "./lap/lap5/Lap5B1";
+import { persistor, store } from "./lap/lap5/store";
 
 export default function Demo({ navigation }: { navigation: any }) {
-    return (
-        <View style={{ flex: 1 }}>
-            <Lap1B1
-                title="Trang chủ"
-                navigation={navigation}
-                iconLeft="https://www.iconpacks.net/icons/2/free-arrow-left-icon-3099-thumb.png"
-                rightComponent={<Text style={{ fontSize: 16, color: "blue" }}></Text>}
-            />
-            <Lap1B3
-                title="Password"
-                borderRadiusColor="blue"
-                backgroundColor="yellow"
-                placeholder="Enter your password"
-                isError={false}
-            />
-            <Lap1B3
-                title="Confirm Password"
-                borderRadiusColor="red"
-                backgroundColor="blue"
-                placeholder="Enter your confirm password"
-                isError={true}
-            />
-        </View>
-    );
+  return (
+    <View style={{ flex: 1 }}>
+      {/* <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <Lap5B1 />
+        </PersistGate>
+      </Provider> */}
+    </View>
+  );
 }

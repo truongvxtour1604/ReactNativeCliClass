@@ -44,10 +44,7 @@ export default function Lap4B1() {
                 PermissionsAndroid.PERMISSIONS.CAMERA,
                 ...(Platform.Version >= 33
                     ? [PermissionsAndroid.PERMISSIONS.READ_MEDIA_IMAGES]
-                    : [
-                        PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
-                        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
-                    ]),
+                    : [PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE]),
             ];
 
             const granted = await PermissionsAndroid.requestMultiple(permissions);
