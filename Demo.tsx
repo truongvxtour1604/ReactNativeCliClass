@@ -8,11 +8,11 @@ import { persistor, store } from "./lap/lap5/store";
 export default function Demo({ navigation }: { navigation: any }) {
   return (
     <View style={{ flex: 1 }}>
-      {/* <Provider store={store}>
+      <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <Lap5B1 />
         </PersistGate>
-      </Provider> */}
+      </Provider>
     </View>
   );
 }

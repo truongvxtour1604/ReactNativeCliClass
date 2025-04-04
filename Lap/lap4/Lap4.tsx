@@ -12,10 +12,6 @@ export default function Lap4({ navigation }: { navigation: any }) {
                 onPress={() => navigation.navigate('Lap4B2')}>
                 <Text style={{ color: '#fff', textAlign: 'center' }}>Lap4B2</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={{ marginTop: 20, backgroundColor: 'black', width: 100, height: 50, justifyContent: 'center', borderRadius: 5 }}
-                onPress={() => navigation.navigate('Lap4B3')}>
-                <Text style={{ color: '#fff', textAlign: 'center' }}>Lap4B3</Text>
-            </TouchableOpacity>
         </View>
     );
 }

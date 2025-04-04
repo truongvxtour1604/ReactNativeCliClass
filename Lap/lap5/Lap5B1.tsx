@@ -5,22 +5,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./store";
 import { setImage, clearImage } from "./imageSlice";
 
-const cameraOptions: CameraOptions = useMemo(() => ({
-  mediaType: "photo",
-  maxWidth: 500,
-  maxHeight: 500,
-  cameraType: "front",
-  saveToPhotos: true,
-}), []);
-
-const libraryOptions: ImageLibraryOptions = useMemo(() => ({
-  ...cameraOptions,
-  selectionLimit: 1,
-}), [cameraOptions]);
-
-const defaultImage = "https://organicmandya.com/cdn/shop/files/Apples_bf998dd2-0ee8-4880-9726-0723c6fbcff3.jpg?v=1721368465&width=1000";
-
 export default function Lap5B1() {
+  const cameraOptions: CameraOptions = useMemo(() => ({
+    mediaType: "photo",
+    maxWidth: 500,
+    maxHeight: 500,
+    cameraType: "front",
+    saveToPhotos: true,
+  }), []);
+
+  const libraryOptions: ImageLibraryOptions = useMemo(() => ({
+    ...cameraOptions,
+    selectionLimit: 1,
+  }), [cameraOptions]);
+
+  const defaultImage = "https://organicmandya.com/cdn/shop/files/Apples_bf998dd2-0ee8-4880-9726-0723c6fbcff3.jpg?v=1721368465&width=1000";
   const dispatch = useDispatch();
   const image = useSelector((state: RootState) => state.image.uri);
 
