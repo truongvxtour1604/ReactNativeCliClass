@@ -2,7 +2,7 @@ import React, { useCallback, useMemo } from "react";
 import { Alert, Button, Image, StyleSheet, View } from "react-native";
 import { CameraOptions, ImageLibraryOptions, launchImageLibrary, ImagePickerResponse } from "react-native-image-picker";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "./store";
+import { RootState } from "../../store";
 import { setImage, clearImage } from "./imageSlice";
 
 export default function Lap5B1() {
